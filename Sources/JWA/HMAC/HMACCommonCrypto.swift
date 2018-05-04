@@ -3,7 +3,7 @@ import CommonCrypto
 
 
 extension HMACAlgorithm: SignAlgorithm, VerifyAlgorithm {
-  public func sign(_ message: Data) -> Data {
+  public func sign(_ message: Data) throws -> Data {
     let context = UnsafeMutablePointer<CCHmacContext>.allocate(capacity: 1)
     defer { context.deallocate(capacity: 1) }
 
