@@ -39,8 +39,10 @@ extension RSAAlgorithm: VerifyAlgorithm {
     public func verify(_ message: Data, signature: Data) throws -> Bool {
         switch key {
         case .`private`:
+            /// Verify by regenerating signature using private key
             return try sign(message) == signature
         case .`public`(let keyData):
+            /// Verify by decrypting signature using public key and comparing to message hash
             guard #available(OSX 10.12, iOS 10.0, *) else {
                 throw RSAAlgorithm.SigningError.unsupportedPlatform
             }
