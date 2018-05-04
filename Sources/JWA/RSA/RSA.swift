@@ -6,8 +6,14 @@ final public class RSAAlgorithm: Algorithm {
     public let hash: Hash
     
     public enum SigningError: Error {
+        
+        /// Attempting to use a public key to sign
         case privateKeyRequiredToSign
+        
+        /// Attempting to sign on an unsupported device platform
         case unsupportedPlatform
+        
+        /// Generic error when signing fails
         case signingFailed
     }
     
