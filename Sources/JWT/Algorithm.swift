@@ -18,13 +18,13 @@ public enum Algorithm: CustomStringConvertible {
   case hs512(Data)
     
   /// RSASSA-PKCS1 using SHA-256 hash algorithm
-  case rs256(Data)
+  case rs256(RSAAlgorithm.Key)
     
   /// RSASSA-PKCS1 using SHA-384 hash algorithm
-  case rs384(Data)
+  case rs384(RSAAlgorithm.Key)
     
   /// RSASSA-PKCS1 using SHA-512 hash algorithm
-  case rs512(Data)
+  case rs512(RSAAlgorithm.Key)
 
   var algorithm: SignAlgorithm {
     switch self {
