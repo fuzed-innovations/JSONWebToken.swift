@@ -23,7 +23,7 @@ extension RSAAlgorithm: SignAlgorithm {
         }
         
         guard #available(OSX 10.12, iOS 10.0, *) else {
-            fatalError()
+            throw RSAAlgorithm.SigningError.unsupportedPlatform
         }
         
         let privateKey = try CryptorRSA.createPrivateKey(with: keyData)
@@ -43,7 +43,7 @@ extension RSAAlgorithm: VerifyAlgorithm {
             return try sign(message) == signature
         case .`public`(let keyData):
             guard #available(OSX 10.12, iOS 10.0, *) else {
-                fatalError()
+                throw RSAAlgorithm.SigningError.unsupportedPlatform
             }
             
             let publicKey = try CryptorRSA.createPublicKey(with: keyData)

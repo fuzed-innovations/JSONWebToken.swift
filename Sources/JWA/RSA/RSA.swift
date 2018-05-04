@@ -6,6 +6,7 @@ final public class RSAAlgorithm: Algorithm {
     
     public enum SigningError: Error {
         case privateKeyRequiredToSign
+        case unsupportedPlatform
         case signingFailed
     }
     
