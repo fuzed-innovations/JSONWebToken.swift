@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CryptorRSA",
+        "repositoryURL": "https://github.com/fuzed-innovations/BlueRSA.git",
+        "state": {
+          "branch": null,
+          "revision": "7602520b4f96a073ef1f6390f2b9862998cba117",
+          "version": "1.0.1-beta.1.0"
+        }
+      },
+      {
+        "package": "CommonCrypto",
+        "repositoryURL": "https://github.com/kylef-archive/CommonCrypto.git",
+        "state": {
+          "branch": null,
+          "revision": "8080a04cab22f73276c81c92a6af2c39e15be094",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
