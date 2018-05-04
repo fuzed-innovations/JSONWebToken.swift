@@ -3,7 +3,7 @@ import JWT
 
 class PayloadTests: XCTestCase {
   func testIssuer() {
-    _ = JWT.encode(.none) { builder in
+    _ = try! JWT.encode(.none) { builder in
       builder.issuer = "fuller.li"
       XCTAssertEqual(builder.issuer, "fuller.li")
       XCTAssertEqual(builder["iss"] as? String, "fuller.li")
@@ -11,7 +11,7 @@ class PayloadTests: XCTestCase {
   }
 
   func testAudience() {
-    _ = JWT.encode(.none) { builder in
+    _ = try! JWT.encode(.none) { builder in
       builder.audience = "cocoapods"
       XCTAssertEqual(builder.audience, "cocoapods")
       XCTAssertEqual(builder["aud"] as? String, "cocoapods")
@@ -19,7 +19,7 @@ class PayloadTests: XCTestCase {
   }
 
   func testExpiration() {
-    _ = JWT.encode(.none) { builder in
+    _ = try! JWT.encode(.none) { builder in
       let date = Date(timeIntervalSince1970: Date().timeIntervalSince1970)
       builder.expiration = date
       XCTAssertEqual(builder.expiration, date)
@@ -28,7 +28,7 @@ class PayloadTests: XCTestCase {
   }
 
   func testNotBefore() {
-    _ = JWT.encode(.none) { builder in
+    _ = try! JWT.encode(.none) { builder in
       let date = Date(timeIntervalSince1970: Date().timeIntervalSince1970)
       builder.notBefore = date
       XCTAssertEqual(builder.notBefore, date)
@@ -37,7 +37,7 @@ class PayloadTests: XCTestCase {
   }
 
   func testIssuedAt() {
-    _ = JWT.encode(.none) { builder in
+    _ = try! JWT.encode(.none) { builder in
       let date = Date(timeIntervalSince1970: Date().timeIntervalSince1970)
       builder.issuedAt = date
       XCTAssertEqual(builder.issuedAt, date)
@@ -46,7 +46,7 @@ class PayloadTests: XCTestCase {
   }
 
   func testCustomAttributes() {
-    _ = JWT.encode(.none) { builder in
+    _ = try! JWT.encode(.none) { builder in
       builder["user"] = "kyle"
       XCTAssertEqual(builder["user"] as? String, "kyle")
     }

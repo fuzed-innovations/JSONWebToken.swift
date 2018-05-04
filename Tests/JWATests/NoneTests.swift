@@ -18,6 +18,6 @@ class NoneAlgorithmTests: XCTestCase {
 
   func testVerify() {
     let algorithm = NoneAlgorithm()
-    XCTAssertTrue(algorithm.verify(message, signature: signature))
+    XCTAssertTrue(try! algorithm.verify(message, signature: signature))
   }
 }

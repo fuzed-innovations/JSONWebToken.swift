@@ -3,7 +3,7 @@ import JWT
 
 class IntegrationTests: XCTestCase {
   func testVerificationFailureWithoutLeeway() {
-    let token = JWT.encode(.none) { builder in
+    let token = try! JWT.encode(.none) { builder in
       builder.issuer = "fuller.li"
       builder.audience = "cocoapods"
       builder.expiration = Date().addingTimeInterval(-1) // Token expired one second ago
@@ -22,7 +22,7 @@ class IntegrationTests: XCTestCase {
   }
 
   func testVerificationSuccessWithLeeway() {
-    let token = JWT.encode(.none) { builder in
+    let token = try! JWT.encode(.none) { builder in
       builder.issuer = "fuller.li"
       builder.audience = "cocoapods"
       builder.expiration = Date().addingTimeInterval(-1) // Token expired one second ago

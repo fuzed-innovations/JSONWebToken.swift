@@ -48,16 +48,16 @@ class HMACAlgorithmTests: XCTestCase {
 
   func testSHA256Verify() {
     let algorithm = HMACAlgorithm(key: key, hash: .sha256)
-    XCTAssertTrue(algorithm.verify(message, signature: sha256Signature))
+    XCTAssertTrue(try! algorithm.verify(message, signature: sha256Signature))
   }
 
   func testSHA384Verify() {
     let algorithm = HMACAlgorithm(key: key, hash: .sha384)
-    XCTAssertTrue(algorithm.verify(message, signature: sha384Signature))
+    XCTAssertTrue(try! algorithm.verify(message, signature: sha384Signature))
   }
 
   func testSHA512Verify() {
     let algorithm = HMACAlgorithm(key: key, hash: .sha512)
-    XCTAssertTrue(algorithm.verify(message, signature: sha512Signature))
+    XCTAssertTrue(try! algorithm.verify(message, signature: sha512Signature))
   }
 }
