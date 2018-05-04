@@ -3,9 +3,7 @@ import CryptorRSA
 
 
 extension RSAAlgorithm {
-    
     var cryptorRSAAlgorithm: Data.Algorithm {
-        
         switch self.hash {
         case .sha256:
             return .sha256
