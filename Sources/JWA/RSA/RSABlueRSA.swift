@@ -22,7 +22,7 @@ extension RSAAlgorithm: SignAlgorithm {
             throw RSAAlgorithm.SigningError.privateKeyRequiredToSign
         }
         
-        guard #available(OSX 10.12, *) else {
+        guard #available(OSX 10.12, iOS 10.0, *) else {
             fatalError()
         }
         
@@ -42,7 +42,7 @@ extension RSAAlgorithm: VerifyAlgorithm {
         case .`private`:
             return try sign(message) == signature
         case .`public`(let keyData):
-            guard #available(OSX 10.12, *) else {
+            guard #available(OSX 10.12, iOS 10.0, *) else {
                 fatalError()
             }
             
