@@ -94,6 +94,9 @@ This library supports the following algorithms:
 - `hs256` - HMAC using SHA-256 hash algorithm (default)
 - `hs384` - HMAC using SHA-384 hash algorithm
 - `hs512` - HMAC using SHA-512 hash algorithm
+- `rs256` - RSASSA-PKCS1 using SHA-256 hash algorithm
+- `rs384` - RSASSA-PKCS1 using SHA-384 hash algorithm
+- `rs512` - RSASSA-PKCS1 using SHA-512 hash algorithm
 
 ## License
 
