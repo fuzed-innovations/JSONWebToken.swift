@@ -106,9 +106,9 @@ func verifySignature(_ algorithms: [Algorithm], header: JOSEHeader, signingInput
     throw InvalidToken.decodeError("Missing Algorithm")
   }
 
-  let verifiedAlgorithms = algorithms
+  let verifiedAlgorithms = try algorithms
     .filter { algorithm in algorithm.description == alg }
-    .filter { algorithm in algorithm.algorithm.verify(signingInput.data(using: .utf8)!, signature: signature) }
+    .filter { algorithm in try algorithm.algorithm.verify(signingInput.data(using: .utf8)!, signature: signature) }
 
   if verifiedAlgorithms.isEmpty {
     throw InvalidToken.invalidAlgorithm

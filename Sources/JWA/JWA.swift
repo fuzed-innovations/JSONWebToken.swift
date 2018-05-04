@@ -12,7 +12,7 @@ public protocol Algorithm: class {
 
 /// Represents a JSON Web Algorithm (JWA) that is capable of signing
 public protocol SignAlgorithm: Algorithm {
-  func sign(_ message: Data) -> Data
+  func sign(_ message: Data) throws -> Data
 }
 
 
@@ -20,13 +20,12 @@ public protocol SignAlgorithm: Algorithm {
 
 /// Represents a JSON Web Algorithm (JWA) that is capable of verifying
 public protocol VerifyAlgorithm: Algorithm {
-  func verify(_ message: Data, signature: Data) -> Bool
+  func verify(_ message: Data, signature: Data) throws -> Bool
 }
-
 
 extension SignAlgorithm {
   /// Verify a signature for a message using the algorithm
-  public func verify(_ message: Data, signature: Data) -> Bool {
-    return sign(message) == signature
+  public func verify(_ message: Data, signature: Data) throws -> Bool {
+    return try sign(message) == signature
   }
 }
