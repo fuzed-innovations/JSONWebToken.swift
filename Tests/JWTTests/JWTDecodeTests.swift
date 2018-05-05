@@ -189,6 +189,117 @@ class DecodeTests: XCTestCase {
       XCTAssertEqual(payload as! [String: String], ["some": "payload"])
     }
   }
+    
+  func testRS256Algorithm() {
+    let jwt = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.KdHoJwaxEmEK3ydLqxJDWcHhExH1Q54YiTs-4AonWL6U0uxoI9nGKjEtTLDMGs3Wy3cPbSzDv0nI5iYVA3txA1GYF9QxssboKlr5QTsGk6_7HLVXe8HDNTUBaHCjogYhUxgxolGdzml1gn7uAEuuZVAtjSMMw7PYGfc6hN1bW8Q"
+    
+    let privateKeyString = """
+MIICWwIBAAKBgQDdlatRjRjogo3WojgGHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw
+33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW
++jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
+AoGAD+onAtVye4ic7VR7V50DF9bOnwRwNXrARcDhq9LWNRrRGElESYYTQ6EbatXS
+3MCyjjX2eMhu/aF5YhXBwkppwxg+EOmXeh+MzL7Zh284OuPbkglAaGhV9bb6/5Cp
+uGb1esyPbYW+Ty2PC0GSZfIXkXs76jXAu9TOBvD0ybc2YlkCQQDywg2R/7t3Q2OE
+2+yo382CLJdrlSLVROWKwb4tb2PjhY4XAwV8d1vy0RenxTB+K5Mu57uVSTHtrMK0
+GAtFr833AkEA6avx20OHo61Yela/4k5kQDtjEf1N0LfI+BcWZtxsS3jDM3i1Hp0K
+Su5rsCPb8acJo5RO26gGVrfAsDcIXKC+bQJAZZ2XIpsitLyPpuiMOvBbzPavd4gY
+6Z8KWrfYzJoI/Q9FuBo6rKwl4BFoToD7WIUS+hpkagwWiz+6zLoX1dbOZwJACmH5
+fSSjAkLRi54PKJ8TFUeOP15h9sQzydI8zJU+upvDEKZsZc/UhT/SySDOxQ4G/523
+Y0sz/OZtSWcol/UMgQJALesy++GdvoIDLfJX5GBQpuFgFenRiRDabxrE9MNUZ2aP
+FaFp+DyAe+b4nDwuJaW2LURbr8AEZga7oQj0uYxcYw==
+"""
+    let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
+    
+    let publicKeyString = """
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
+UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
+HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
+o2kQ+X5xK9cipRgEKwIDAQAB
+"""
+    let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
+    
+    assertSuccess(try decode(jwt, algorithm: .rs256(.`private`(privateKeyData)))) { payload in
+      XCTAssertEqual(payload as! [String: String], ["some": "payload"])
+    }
+    
+    assertSuccess(try decode(jwt, algorithm: .rs256(.`public`(publicKeyData)))) { payload in
+        XCTAssertEqual(payload as! [String: String], ["some": "payload"])
+    }
+  }
+    
+  func testRS384Algorithm() {
+    let jwt = "eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.o1-JmM3xUQgKuVWSKCSRgkynDNba0ltUE6_mWHTva0jxZjivj6udR_a5KIYqv0BwhB97xdPg0HlrVscbGa5IQP9iXZx4ZxqMdhhjts1P6QmSrUvPgmLrWIh5iha4vpMWijtP6h5H7xTFLOxj5V7xngbDnkXrXrydqQNisDRd6vU"
+        
+    let privateKeyString = """
+MIICWwIBAAKBgQDdlatRjRjogo3WojgGHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw
+33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW
++jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
+AoGAD+onAtVye4ic7VR7V50DF9bOnwRwNXrARcDhq9LWNRrRGElESYYTQ6EbatXS
+3MCyjjX2eMhu/aF5YhXBwkppwxg+EOmXeh+MzL7Zh284OuPbkglAaGhV9bb6/5Cp
+uGb1esyPbYW+Ty2PC0GSZfIXkXs76jXAu9TOBvD0ybc2YlkCQQDywg2R/7t3Q2OE
+2+yo382CLJdrlSLVROWKwb4tb2PjhY4XAwV8d1vy0RenxTB+K5Mu57uVSTHtrMK0
+GAtFr833AkEA6avx20OHo61Yela/4k5kQDtjEf1N0LfI+BcWZtxsS3jDM3i1Hp0K
+Su5rsCPb8acJo5RO26gGVrfAsDcIXKC+bQJAZZ2XIpsitLyPpuiMOvBbzPavd4gY
+6Z8KWrfYzJoI/Q9FuBo6rKwl4BFoToD7WIUS+hpkagwWiz+6zLoX1dbOZwJACmH5
+fSSjAkLRi54PKJ8TFUeOP15h9sQzydI8zJU+upvDEKZsZc/UhT/SySDOxQ4G/523
+Y0sz/OZtSWcol/UMgQJALesy++GdvoIDLfJX5GBQpuFgFenRiRDabxrE9MNUZ2aP
+FaFp+DyAe+b4nDwuJaW2LURbr8AEZga7oQj0uYxcYw==
+"""
+    let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
+        
+    let publicKeyString = """
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
+UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
+HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
+o2kQ+X5xK9cipRgEKwIDAQAB
+"""
+    let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
+        
+    assertSuccess(try decode(jwt, algorithm: .rs384(.`private`(privateKeyData)))) { payload in
+      XCTAssertEqual(payload as! [String: String], ["some": "payload"])
+    }
+        
+    assertSuccess(try decode(jwt, algorithm: .rs384(.`public`(publicKeyData)))) { payload in
+      XCTAssertEqual(payload as! [String: String], ["some": "payload"])
+    }
+  }
+
+  func testRS512Algorithm() {
+    let jwt = "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.hAKiK4Ha198U5eDWSSrvZ_jRCTHXNaUwX-WYnZW66byYppthp498Wh4Hl1ctzrPyM6k1MAdbfFnlNv8KfQgLj38Qh5adgWUuUEmAcpYmf4KXT8864GykNTEGtpAO6ESMS2Q9QXvVYXUrBsJYTdKadiBxoy6oK-3IZirfNREPkc4"
+        
+    let privateKeyString = """
+MIICWwIBAAKBgQDdlatRjRjogo3WojgGHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw
+33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW
++jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
+AoGAD+onAtVye4ic7VR7V50DF9bOnwRwNXrARcDhq9LWNRrRGElESYYTQ6EbatXS
+3MCyjjX2eMhu/aF5YhXBwkppwxg+EOmXeh+MzL7Zh284OuPbkglAaGhV9bb6/5Cp
+uGb1esyPbYW+Ty2PC0GSZfIXkXs76jXAu9TOBvD0ybc2YlkCQQDywg2R/7t3Q2OE
+2+yo382CLJdrlSLVROWKwb4tb2PjhY4XAwV8d1vy0RenxTB+K5Mu57uVSTHtrMK0
+GAtFr833AkEA6avx20OHo61Yela/4k5kQDtjEf1N0LfI+BcWZtxsS3jDM3i1Hp0K
+Su5rsCPb8acJo5RO26gGVrfAsDcIXKC+bQJAZZ2XIpsitLyPpuiMOvBbzPavd4gY
+6Z8KWrfYzJoI/Q9FuBo6rKwl4BFoToD7WIUS+hpkagwWiz+6zLoX1dbOZwJACmH5
+fSSjAkLRi54PKJ8TFUeOP15h9sQzydI8zJU+upvDEKZsZc/UhT/SySDOxQ4G/523
+Y0sz/OZtSWcol/UMgQJALesy++GdvoIDLfJX5GBQpuFgFenRiRDabxrE9MNUZ2aP
+FaFp+DyAe+b4nDwuJaW2LURbr8AEZga7oQj0uYxcYw==
+"""
+    let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
+        
+    let publicKeyString = """
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
+UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
+HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
+o2kQ+X5xK9cipRgEKwIDAQAB
+"""
+    let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
+        
+    assertSuccess(try decode(jwt, algorithm: .rs512(.`private`(privateKeyData)))) { payload in
+      XCTAssertEqual(payload as! [String: String], ["some": "payload"])
+    }
+        
+    assertSuccess(try decode(jwt, algorithm: .rs512(.`public`(publicKeyData)))) { payload in
+      XCTAssertEqual(payload as! [String: String], ["some": "payload"])
+    }
+  }
 }
 
 // MARK: Helpers
