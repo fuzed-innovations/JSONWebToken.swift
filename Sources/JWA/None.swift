@@ -9,7 +9,7 @@ public final class NoneAlgorithm: Algorithm, SignAlgorithm, VerifyAlgorithm {
 
   public init() {}
 
-  public func sign(_ message: Data) -> Data {
+  public func sign(_ message: Data) throws -> Data {
     return Data()
   }
 }

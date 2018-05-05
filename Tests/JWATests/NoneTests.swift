@@ -13,7 +13,7 @@ class NoneAlgorithmTests: XCTestCase {
 
   func testSign() {
     let algorithm = NoneAlgorithm()
-    XCTAssertEqual(algorithm.sign(message), signature)
+    XCTAssertEqual(try! algorithm.sign(message), signature)
   }
 
   func testVerify() {
