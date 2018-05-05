@@ -26,7 +26,7 @@ public enum Algorithm: CustomStringConvertible {
   /// RSASSA-PKCS1 using SHA-512 hash algorithm
   case rs512(RSAAlgorithm.Key)
 
-  var algorithm: SignAlgorithm {
+  var algorithm: SignAlgorithm & VerifyAlgorithm {
     switch self {
     case .none:
       return NoneAlgorithm()
