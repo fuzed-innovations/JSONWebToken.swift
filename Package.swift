@@ -12,7 +12,7 @@ let excludes = ["HMAC/HMACCryptoSwift.swift"]
 let targetDependencies: [Target.Dependency] = ["CryptorRSA"]
 #else
 let dependencies = [
-  Package.Dependency.package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: .upToNextMinor("0.8.0")),
+  Package.Dependency.package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "0.8.0")),
   Package.Dependency.package(url: "https://github.com/fuzed-innovations/BlueRSA.git", from: "1.0.1-beta.2.0"),
 ]
 let excludes = ["HMAC/HMACCommonCrypto.swift"]
