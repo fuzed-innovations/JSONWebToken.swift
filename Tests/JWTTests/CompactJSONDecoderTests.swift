@@ -7,6 +7,10 @@ class CompactJSONDecodable: Decodable {
 
 class CompactJSONDecoderTests: XCTestCase {
   let decoder = CompactJSONDecoder()
+    
+    static var allTests = [
+        ("testDecoder", testDecoder)
+    ]
 
   func testDecoder() throws {
     let expected = "eyJrZXkiOiJ2YWx1ZSJ9".data(using: .ascii)!

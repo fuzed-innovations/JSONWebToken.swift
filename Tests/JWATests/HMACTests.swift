@@ -9,6 +9,18 @@ class HMACAlgorithmTests: XCTestCase {
   let sha256Signature = Data(base64Encoded: "i19IcCmVwVmMVz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs=")!
   let sha384Signature = Data(base64Encoded: "rQ706A2kJ7KjPURXyXK/dZ9Qdm+7ZlaQ1Qt8s43VIX21Wck+p8vuSOKuGltKr9NL")!
   let sha512Signature = Data(base64Encoded: "G7pYfHMO7box9Tq7C2ylieCd5OiU7kVeYUCAc5l1mtqvoGnux8AWR7sXPcsX9V0ir0mhgHG3SMXC7df3qCnGMg==")!
+    
+    static var allTests = [
+        ("testSHA256Name", testSHA256Name),
+        ("testSHA384Name", testSHA384Name),
+        ("testSHA512Name", testSHA512Name),
+        ("testSHA256Sign", testSHA256Sign),
+        ("testSHA384Sign", testSHA384Sign),
+        ("testSHA512Sign", testSHA512Sign),
+        ("testSHA256Verify", testSHA256Verify),
+        ("testSHA384Verify", testSHA384Verify),
+        ("testSHA512Verify", testSHA512Verify)
+    ]
 
   // MARK: Name
 

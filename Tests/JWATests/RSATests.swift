@@ -55,6 +55,18 @@ ZZYFD6pdaMvX9Ozin3/OInHPJk3bKxFYblUdY3bsAYrgDNhQtSg=
     let sha384Signature = Data(base64Encoded: "VW/XRY0+1BWXwIjYyf2A0NzwuN8zYEZdhEU2qpc91lt/cZ8TFPJ9F6DlDZyCZM14sMK1vSkoErsXD8N6Lfh/7wNVA0J128uH/xLOUXG2l3Dh7UgwyXm5Kcm+3QuJPimld4NJTo8FPYRl9pAN2MeJkUWTrmFR58/AmjvhV7fRan5L3iykxMv2Qg4R6r5HSYP/rumpG8pxv7ZZgUzQWd5F4DwGlkjKg5P4Bj9kxAm5OUVlJF1Wx/Wfimzs16+0OtXcjslGfH9NYfKxDrCldfrhjlUTfVXa6ZAc+D/0ZpiF3oA8oAsN9ocaD58PzXq4Rt6Q2orapRTHeUEhPDfacAWJgw==")!
     let sha512Signature = Data(base64Encoded: "R7NFfTLvZKUvu1lclmmwdL1QD2Ea8JWVxdmid6i0pzUM2Ips/XvLFFFEr+lIBQN/jBNI4b0vYw686D9H/vqux+FQJWX15cZlZlAdvfUJay/VSNYUJZH3YJtzfRmMGwifTKtJRztN/jhHiebx04SwuY3Qn1zcDSMkcHowCa7L/4ryh44Do42aO/IJArBdwaQs5wJ6BcJ5d7LexmTp7ceGwzHGQl5xEaFmoHeDTr1CLa9dIci/j47QmBZ9iOJsmYVETZNomLwj/5pioyBBprMBsCT+GCfZA1Ro1u/OmDS1lCFmSyQ6JEzx2emiKxJDLEl7YAAklJi+rZbq9/9JL2BW7g==")!
     
+    static var allTests = [
+        ("testSHA256Name", testSHA256Name),
+        ("testSHA384Name", testSHA384Name),
+        ("testSHA512Name", testSHA512Name),
+        ("testSHA256Sign", testSHA256Sign),
+        ("testSHA384Sign", testSHA384Sign),
+        ("testSHA512Sign", testSHA512Sign),
+        ("testSHA256Verify", testSHA256Verify),
+        ("testSHA384Verify", testSHA384Verify),
+        ("testSHA512Verify", testSHA512Verify)
+    ]
+    
     // MARK: Name
     
     func testSHA256Name() {

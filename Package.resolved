@@ -11,11 +11,20 @@
         }
       },
       {
-        "package": "CommonCrypto",
-        "repositoryURL": "https://github.com/kylef-archive/CommonCrypto.git",
+        "package": "CryptoSwift",
+        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "8080a04cab22f73276c81c92a6af2c39e15be094",
+          "revision": "f2ca9c377d4b44596a131e37eeb908221fb6e6be",
+          "version": "0.8.3"
+        }
+      },
+      {
+        "package": "OpenSSL",
+        "repositoryURL": "https://github.com/IBM-Swift/OpenSSL.git",
+        "state": {
+          "branch": null,
+          "revision": "95c405c18a071a1c13616e984ba1b3c6091ca6ca",
           "version": "1.0.0"
         }
       }

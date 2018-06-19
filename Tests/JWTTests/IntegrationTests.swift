@@ -2,6 +2,12 @@ import XCTest
 import JWT
 
 class IntegrationTests: XCTestCase {
+    
+    static var allTests = [
+        ("testVerificationFailureWithoutLeeway", testVerificationFailureWithoutLeeway),
+        ("testVerificationSuccessWithLeeway", testVerificationSuccessWithLeeway)
+    ]
+    
   func testVerificationFailureWithoutLeeway() {
     let token = try! JWT.encode(.none) { builder in
       builder.issuer = "fuller.li"

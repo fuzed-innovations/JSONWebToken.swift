@@ -1,65 +1,29 @@
 import XCTest
+
+@testable import JWATests
 @testable import JWTTests
 
-
-extension EncodeTests {
-  static var allTests: [(String, (EncodeTests) -> (Void) throws -> Void)] {
-    return [
-      ("testEncodingJWT", testEncodingJWT),
-      ("testEncodingWithBuilder", testEncodingWithBuilder),
-    ]
-  }
-}
-
-extension DecodeTests {
-  static var allTests: [(String, (DecodeTests) -> (Void) throws -> Void)] {
-    return [
-      ("testDecodingValidJWT", testDecodingValidJWT),
-      ("testFailsToDecodeInvalidStringWithoutThreeSegments", testFailsToDecodeInvalidStringWithoutThreeSegments),
-      ("testDisablingVerify", testDisablingVerify),
-      ("testSuccessfulIssuerValidation", testSuccessfulIssuerValidation),
-      ("testIncorrectIssuerValidation", testIncorrectIssuerValidation),
-      ("testMissingIssuerValidation", testMissingIssuerValidation),
-      ("testExpiredClaim", testExpiredClaim),
-      ("testInvalidExpiaryClaim", testInvalidExpiaryClaim),
-      ("testUnexpiredClaim", testUnexpiredClaim),
-      ("testUnexpiredClaimString", testUnexpiredClaimString),
-      ("testNotBeforeClaim", testNotBeforeClaim),
-      ("testNotBeforeClaimString", testNotBeforeClaimString),
-      ("testInvalidNotBeforeClaim", testInvalidNotBeforeClaim),
-      ("testUnmetNotBeforeClaim", testUnmetNotBeforeClaim),
-      ("testIssuedAtClaimInThePast", testIssuedAtClaimInThePast),
-      ("testIssuedAtClaimInThePastString", testIssuedAtClaimInThePastString),
-      ("testIssuedAtClaimInTheFuture", testIssuedAtClaimInTheFuture),
-      ("testInvalidIssuedAtClaim", testInvalidIssuedAtClaim),
-      ("testAudiencesClaim", testAudiencesClaim),
-      ("testAudienceClaim", testAudienceClaim),
-      ("testMismatchAudienceClaim", testMismatchAudienceClaim),
-      ("testMissingAudienceClaim", testMissingAudienceClaim),
-      ("testNoneAlgorithm", testNoneAlgorithm),
-      ("testNoneFailsWithSecretAlgorithm", testNoneFailsWithSecretAlgorithm),
-      ("testMatchesAnyAlgorithm", testMatchesAnyAlgorithm),
-      ("testHS384Algorithm", testHS384Algorithm),
-      ("testHS512Algorithm", testHS512Algorithm),
-    ]
-  }
-}
-
-extension PayloadTests {
-  static var allTests: [(String, (PayloadTests) -> (Void) throws -> Void)] {
-    return [
-      ("testIssuer", testIssuer),
-      ("testAudience", testAudience),
-      ("testExpiration", testExpiration),
-      ("testNotBefore", testNotBefore),
-      ("testIssuedAt", testIssuedAt),
-      ("testCustomAttributes", testCustomAttributes),
-    ]
-  }
-}
+//@testable import HMACATests
+//@testable import NoneAlgorithmTests
+//@testable import RSATests
+//
+//@testable import ClaimSetTests
+//@testable import CompactJSONDecoderTests
+//@testable import CompactJSONEncoderTests
+//@testable import IntegrationTests
+//@testable import JWTDecodeTests
+//@testable import JWTEncodeTests
+//@testable import PayloadTests
 
 XCTMain([
-  testCase(EncodeTests.allTests),
-  testCase(DecodeTests.allTests),
-  testCase(PayloadTests.allTests),
+    testCase(HMACAlgorithmTests.allTests),
+    testCase(NoneAlgorithmTests.allTests),
+    testCase(RSAAlgorithmTests.allTests),
+    testCase(ValidationTests.allTests),
+    testCase(CompactJSONDecoderTests.allTests),
+    testCase(CompactJSONEncoderTests.allTests),
+    testCase(IntegrationTests.allTests),
+    testCase(DecodeTests.allTests),
+    testCase(JWTEncodeTests.allTests),
+    testCase(PayloadTests.allTests)
 ])
