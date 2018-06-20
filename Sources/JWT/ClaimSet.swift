@@ -10,6 +10,10 @@ func parseTimeInterval(_ value: Any?) -> Date? {
   if let interval = value as? TimeInterval {
     return Date(timeIntervalSince1970: interval)
   }
+    
+  if let interval = value as? Int {
+    return Date(timeIntervalSince1970: TimeInterval(interval))
+  }
 
   return nil
 }
