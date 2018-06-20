@@ -5,7 +5,7 @@ import PackageDescription
 
 #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
 let dependencies = [
-  Package.Dependency.package(url: "https://github.com/kylef-archive/CommonCrypto.git", from: "1.0.0"),
+  Package.Dependency.package(url: "https://github.com/IBM-Swift/CommonCrypto.git", from: "1.0.0"),
   Package.Dependency.package(url: "https://github.com/fuzed-innovations/BlueRSA.git", from: "1.0.1-beta.2.0"),
 ]
 let excludes = ["HMAC/HMACCryptoSwift.swift"]
