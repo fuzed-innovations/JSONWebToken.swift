@@ -228,6 +228,7 @@ class DecodeTests: XCTestCase {
         let jwt = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.KdHoJwaxEmEK3ydLqxJDWcHhExH1Q54YiTs-4AonWL6U0uxoI9nGKjEtTLDMGs3Wy3cPbSzDv0nI5iYVA3txA1GYF9QxssboKlr5QTsGk6_7HLVXe8HDNTUBaHCjogYhUxgxolGdzml1gn7uAEuuZVAtjSMMw7PYGfc6hN1bW8Q"
         
         let privateKeyString = """
+-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDdlatRjRjogo3WojgGHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw
 33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW
 +jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
@@ -241,22 +242,23 @@ Su5rsCPb8acJo5RO26gGVrfAsDcIXKC+bQJAZZ2XIpsitLyPpuiMOvBbzPavd4gY
 fSSjAkLRi54PKJ8TFUeOP15h9sQzydI8zJU+upvDEKZsZc/UhT/SySDOxQ4G/523
 Y0sz/OZtSWcol/UMgQJALesy++GdvoIDLfJX5GBQpuFgFenRiRDabxrE9MNUZ2aP
 FaFp+DyAe+b4nDwuJaW2LURbr8AEZga7oQj0uYxcYw==
+-----END RSA PRIVATE KEY-----
 """
-        let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
         
         let publicKeyString = """
+-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
 UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
 HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
 o2kQ+X5xK9cipRgEKwIDAQAB
+-----END PUBLIC KEY-----
 """
-        let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
         
-        assertSuccess(try decode(jwt, algorithm: .rs256(.`private`(privateKeyData)))) { payload in
+        assertSuccess(try decode(jwt, algorithm: .rs256(.`private`(privateKeyString)))) { payload in
             XCTAssertEqual(payload as! [String: String], ["some": "payload"])
         }
         
-        assertSuccess(try decode(jwt, algorithm: .rs256(.`public`(publicKeyData)))) { payload in
+        assertSuccess(try decode(jwt, algorithm: .rs256(.`public`(publicKeyString)))) { payload in
             XCTAssertEqual(payload as! [String: String], ["some": "payload"])
         }
     }
@@ -265,6 +267,7 @@ o2kQ+X5xK9cipRgEKwIDAQAB
         let jwt = "eyJhbGciOiJSUzM4NCIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.o1-JmM3xUQgKuVWSKCSRgkynDNba0ltUE6_mWHTva0jxZjivj6udR_a5KIYqv0BwhB97xdPg0HlrVscbGa5IQP9iXZx4ZxqMdhhjts1P6QmSrUvPgmLrWIh5iha4vpMWijtP6h5H7xTFLOxj5V7xngbDnkXrXrydqQNisDRd6vU"
         
         let privateKeyString = """
+-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDdlatRjRjogo3WojgGHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw
 33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW
 +jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
@@ -278,22 +281,23 @@ Su5rsCPb8acJo5RO26gGVrfAsDcIXKC+bQJAZZ2XIpsitLyPpuiMOvBbzPavd4gY
 fSSjAkLRi54PKJ8TFUeOP15h9sQzydI8zJU+upvDEKZsZc/UhT/SySDOxQ4G/523
 Y0sz/OZtSWcol/UMgQJALesy++GdvoIDLfJX5GBQpuFgFenRiRDabxrE9MNUZ2aP
 FaFp+DyAe+b4nDwuJaW2LURbr8AEZga7oQj0uYxcYw==
+-----END RSA PRIVATE KEY-----
 """
-        let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
         
         let publicKeyString = """
+-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
 UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
 HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
 o2kQ+X5xK9cipRgEKwIDAQAB
+-----END PUBLIC KEY-----
 """
-        let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
         
-        assertSuccess(try decode(jwt, algorithm: .rs384(.`private`(privateKeyData)))) { payload in
+        assertSuccess(try decode(jwt, algorithm: .rs384(.`private`(privateKeyString)))) { payload in
             XCTAssertEqual(payload as! [String: String], ["some": "payload"])
         }
         
-        assertSuccess(try decode(jwt, algorithm: .rs384(.`public`(publicKeyData)))) { payload in
+        assertSuccess(try decode(jwt, algorithm: .rs384(.`public`(publicKeyString)))) { payload in
             XCTAssertEqual(payload as! [String: String], ["some": "payload"])
         }
     }
@@ -302,6 +306,7 @@ o2kQ+X5xK9cipRgEKwIDAQAB
         let jwt = "eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJzb21lIjoicGF5bG9hZCJ9.hAKiK4Ha198U5eDWSSrvZ_jRCTHXNaUwX-WYnZW66byYppthp498Wh4Hl1ctzrPyM6k1MAdbfFnlNv8KfQgLj38Qh5adgWUuUEmAcpYmf4KXT8864GykNTEGtpAO6ESMS2Q9QXvVYXUrBsJYTdKadiBxoy6oK-3IZirfNREPkc4"
         
         let privateKeyString = """
+-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDdlatRjRjogo3WojgGHFHYLugdUWAY9iR3fy4arWNA1KoS8kVw
 33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQsHUfQrSDv+MuSUMAe8jzKE4qW
 +jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5Do2kQ+X5xK9cipRgEKwIDAQAB
@@ -315,22 +320,23 @@ Su5rsCPb8acJo5RO26gGVrfAsDcIXKC+bQJAZZ2XIpsitLyPpuiMOvBbzPavd4gY
 fSSjAkLRi54PKJ8TFUeOP15h9sQzydI8zJU+upvDEKZsZc/UhT/SySDOxQ4G/523
 Y0sz/OZtSWcol/UMgQJALesy++GdvoIDLfJX5GBQpuFgFenRiRDabxrE9MNUZ2aP
 FaFp+DyAe+b4nDwuJaW2LURbr8AEZga7oQj0uYxcYw==
+-----END RSA PRIVATE KEY-----
 """
-        let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
         
         let publicKeyString = """
+-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdlatRjRjogo3WojgGHFHYLugd
 UWAY9iR3fy4arWNA1KoS8kVw33cJibXr8bvwUAUparCwlvdbH6dvEOfou0/gCFQs
 HUfQrSDv+MuSUMAe8jzKE4qW+jK+xQU9a03GUnKHkkle+Q0pX/g6jXZ7r1/xAK5D
 o2kQ+X5xK9cipRgEKwIDAQAB
+-----END PUBLIC KEY-----
 """
-        let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
         
-        assertSuccess(try decode(jwt, algorithm: .rs512(.`private`(privateKeyData)))) { payload in
+        assertSuccess(try decode(jwt, algorithm: .rs512(.`private`(privateKeyString)))) { payload in
             XCTAssertEqual(payload as! [String: String], ["some": "payload"])
         }
         
-        assertSuccess(try decode(jwt, algorithm: .rs512(.`public`(publicKeyData)))) { payload in
+        assertSuccess(try decode(jwt, algorithm: .rs512(.`public`(publicKeyString)))) { payload in
             XCTAssertEqual(payload as! [String: String], ["some": "payload"])
         }
     }

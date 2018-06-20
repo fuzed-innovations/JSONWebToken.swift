@@ -5,6 +5,7 @@ import JWA
 
 class RSAAlgorithmTests: XCTestCase {
     let publicKeyString = """
+-----BEGIN PUBLIC KEY-----
 MIIBITANBgkqhkiG9w0BAQEFAAOCAQ4AMIIBCQKCAQBxKkiUejCt3bfeS+SsEgwG
 cshdhrp69wQKrpYcEAIa1gN9rxwgW6vBo0R7b386cxRVOEBzdp03CpKe8D3kXB2j
 47f0/g8wU6pccHlVSxlqTpjsMTpal1z30b0uf00ZirXJYxFPo8AXvaqQNXKfuSIg
@@ -12,13 +13,14 @@ En5b5VLTC0CsakhKiha2tj/xFVRUj+/PUPY4iTrUztMXZi4VrLRpOiIrOUEabtvh
 LdG7d5nxsL6YPuvr2QlFTB/ahnudAfpc+hNSx47pOkoeAtCaIV4SCN8FIh19pTxk
 wbQHuactZ6qcGnKL8eSlA/ktegwENBNU8JRP7Jic8DVDcaujdUnqgYbRQB8Q6UJD
 AgMBAAE=
+-----END PUBLIC KEY-----
 """
     lazy var publicKey: RSAAlgorithm.Key = {
-        let publicKeyData = Data(base64Encoded: publicKeyString.components(separatedBy: "\n").joined())!
-        return RSAAlgorithm.Key.`public`(publicKeyData)
+        return RSAAlgorithm.Key.`public`(publicKeyString)
     }()
     
     let privateKeyString = """
+-----BEGIN RSA PRIVATE KEY-----
 MIIEogIBAAKCAQBxKkiUejCt3bfeS+SsEgwGcshdhrp69wQKrpYcEAIa1gN9rxwg
 W6vBo0R7b386cxRVOEBzdp03CpKe8D3kXB2j47f0/g8wU6pccHlVSxlqTpjsMTpa
 l1z30b0uf00ZirXJYxFPo8AXvaqQNXKfuSIgEn5b5VLTC0CsakhKiha2tj/xFVRU
@@ -44,10 +46,10 @@ cdNkANgpqwzwr+j0p8jezY8tcFrsCMNHDav3MmgMoUccDyqvx9pLa/CwgtHdh6rx
 O8ZBAoGAchNDtJtOkJjfD4Lg9xCi+RJ5PERcilm70MiOOa+s/vyokxtrkfZQCQtF
 NeWwl+nOxEjbI+awk9sftCMrUe6GITZzcGHnWOUd3uWRh0kpPtYTuxbPKMY8M9JM
 ZZYFD6pdaMvX9Ozin3/OInHPJk3bKxFYblUdY3bsAYrgDNhQtSg=
+-----END RSA PRIVATE KEY-----
 """
     lazy var privateKey: RSAAlgorithm.Key = {
-        let privateKeyData = Data(base64Encoded: privateKeyString.components(separatedBy: "\n").joined())!
-        return RSAAlgorithm.Key.`private`(privateKeyData)
+        return RSAAlgorithm.Key.`private`(privateKeyString)
     }()
     
     let message = "message".data(using: .utf8)!

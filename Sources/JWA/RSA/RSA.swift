@@ -2,6 +2,9 @@ import Foundation
 
 
 final public class RSAAlgorithm: Algorithm {
+    
+    public typealias PEMString = String
+    
     public let key: Key
     public let hash: Hash
     
@@ -18,8 +21,8 @@ final public class RSAAlgorithm: Algorithm {
     }
     
     public enum Key {
-        case `private`(Data)
-        case `public`(Data)
+        case `private`(PEMString)
+        case `public`(PEMString)
     }
     
     public enum Hash {

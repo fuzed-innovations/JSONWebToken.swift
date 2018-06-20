@@ -17,7 +17,7 @@ extension RSAAlgorithm {
 
 extension RSAAlgorithm: SignAlgorithm {
     public func sign(_ message: Data) throws -> Data {
-        guard case .`private`(let keyData) = key else {
+        guard case .`private`(let pemString) = key else {
             throw RSAAlgorithm.SigningError.privateKeyRequiredToSign
         }
         
@@ -25,7 +25,8 @@ extension RSAAlgorithm: SignAlgorithm {
             throw RSAAlgorithm.SigningError.unsupportedPlatform
         }
         
-        let privateKey = try CryptorRSA.createPrivateKey(with: keyData)
+        let privateKey = try CryptorRSA.createPrivateKey(withPEM: pemString)
+        
         let plainText = CryptorRSA.createPlaintext(with: message)
         guard let signedData = try plainText.signed(with: privateKey, algorithm: cryptorRSAAlgorithm) else {
             throw RSAAlgorithm.SigningError.signingFailed
@@ -41,13 +42,13 @@ extension RSAAlgorithm: VerifyAlgorithm {
         case .`private`:
             /// Verify by regenerating signature using private key
             return try sign(message) == signature
-        case .`public`(let keyData):
+        case .`public`(let pemString):
             /// Verify by decrypting signature using public key and comparing to message hash
             guard #available(OSX 10.12, iOS 10.0, *) else {
                 throw RSAAlgorithm.SigningError.unsupportedPlatform
             }
             
-            let publicKey = try CryptorRSA.createPublicKey(with: keyData)
+            let publicKey = try CryptorRSA.createPublicKey(withPEM: pemString)
             let plainText = CryptorRSA.createPlaintext(with: message)
             let signedData = CryptorRSA.createSigned(with: signature)
             return try plainText.verify(with: publicKey, signature: signedData, algorithm: cryptorRSAAlgorithm)
