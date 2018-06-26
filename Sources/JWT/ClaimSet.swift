@@ -19,7 +19,7 @@ func parseTimeInterval(_ value: Any?) -> Date? {
 }
 
 public struct ClaimSet {
-  var claims: [String: Any]
+  public var claims: [String: Any]
 
   public init(claims: [String: Any]? = nil) {
     self.claims = claims ?? [:]
