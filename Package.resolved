@@ -3,11 +3,11 @@
     "pins": [
       {
         "package": "CryptorRSA",
-        "repositoryURL": "https://github.com/fuzed-innovations/BlueRSA.git",
+        "repositoryURL": "https://github.com/IBM-Swift/BlueRSA.git",
         "state": {
           "branch": null,
-          "revision": "d8e0609064b19c9ecd4bc43e1f981f17974ed19b",
-          "version": "1.0.1-beta.2.0"
+          "revision": "408b0c8161001ec5e636bc29bc3006290e570dc0",
+          "version": "1.0.28"
         }
       },
       {
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "f2ca9c377d4b44596a131e37eeb908221fb6e6be",
-          "version": "0.8.3"
+          "revision": "3a2acbb32ab68215ee1596ee6004da8e90c3721b",
+          "version": "1.0.0"
         }
       },
       {
@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/OpenSSL.git",
         "state": {
           "branch": null,
-          "revision": "95c405c18a071a1c13616e984ba1b3c6091ca6ca",
-          "version": "1.0.0"
+          "revision": "6c7e2e3610037fbc05c0d846cec981518961d8bf",
+          "version": "2.2.2"
         }
       }
     ]
